@@ -4,7 +4,7 @@ btn.addEventListener("click", searchLocation);
 
 async function fetchWeather(location) {
   const data = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=3959cc39ade247bfbf3174422232210&q=${location}&aqi=no`,
+    `https://api.weatherapi.com/v1/current.json?key=3959cc39ade247bfbf3174422232210&q=${location}&aqi=no`,
     { mode: "cors" }
   );
   const jsonData = await data.json();
@@ -30,8 +30,8 @@ function displayData(data) {
 function searchLocation(e) {
   e.preventDefault();
   if (input.value === "") return;
-  console.log(input.value);
   fetchWeather(input.value).then(displayData).catch(handelError);
+  input.value = "";
 }
 
 function handelError() {
