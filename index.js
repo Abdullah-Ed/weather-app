@@ -25,18 +25,17 @@ function displayData(data) {
   feelsLike.textContent = `Feels like: ${data.current.feelslike_c}°C`;
   humidity.textContent = `Humidity: ${data.current.humidity}%`;
   windKph.textContent = `Wind: ${data.current.wind_mph} mph`;
-
-  console.log(data);
 }
 
 function searchLocation(e) {
   e.preventDefault();
+  if (input.value === "") return;
   console.log(input.value);
-  fetchWeather(input.value)
-    .then(displayData)
-    .catch((error) => {
-      console.log(error);
-    });
+  fetchWeather(input.value).then(displayData).catch(handelError);
+}
+
+function handelError() {
+  alert("Location not found");
 }
 
 fetchWeather("Berlin")
